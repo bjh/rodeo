@@ -7,17 +7,29 @@ task :manifest do
     c.access_key_id = 'AKIAI5YD6AOWIGP64F5A'
     c.secret_access_key = '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'
     c.bucket = 'studeo'
+    c.base_url = 'http://studeo.s3.amazonaws.com/'
   end
 
-  manifest = Rodeo::Manifest.new
-  manifest.load('BronzeC', 1)
-  manifest.parse('BronzeC', 1)
+  manifest = Rodeo::Manifest.new('BronzeC', 1)
+  puts "loading..."
+  manifest.load
 
-  # pp manifest.manifest
-  json = manifest.save('BronzeC', 1)
-  puts json
-  puts '-' * 40
-  puts JSON.parse(json)
-  # manifest.test_parse('BronzeC', 1)
-  manifest.get('BronzeC', 1)
+  # puts "generating..."
+  # manifest.generate
+
+  pp manifest.manifest
+
+  # puts "storing..."
+  # manifest.store
+
+  # manifest.load('BronzeC', 1)
+  # manifest.parse('BronzeC', 1)
+  #
+  # # pp manifest.manifest
+  # json = manifest.save('BronzeC', 1)
+  # puts json
+  # puts '-' * 40
+  # puts JSON.parse(json)
+  # # manifest.test_parse('BronzeC', 1)
+  # manifest.get('BronzeC', 1)
 end
